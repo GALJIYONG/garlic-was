@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -19,11 +20,13 @@ import java.util.stream.Collectors;
 public class Config {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
+    @Getter
     private final int port;
     private final String defaultHost;
     private final List<HostConfig> hosts;
     private final SecurityConfig security;
     private final ErrorPages errorPages;
+    @Getter
     private final List<ServletConfig> servlets;
     private List<Pattern> forbiddenPatterns;
 
@@ -56,10 +59,6 @@ public class Config {
         } catch (IOException e) {
             throw new WebServerException(500, "Failed to load configuration: " + e.getMessage());
         }
-    }
-
-    public int getPort() {
-        return port;
     }
 
     private void initializeForbiddenPatterns() {
@@ -138,7 +137,4 @@ public class Config {
         String internalError
     ) {}
 
-    public List<ServletConfig> getServlets() {
-        return servlets;
-    }
-} 
+}
