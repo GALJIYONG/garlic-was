@@ -1,14 +1,24 @@
 package com.example;
 
-import lombok.extern.slf4j.Slf4j;
+import com.example.config.Config;
+import com.example.exception.WebServerException;
+import com.example.server.HttpServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.Scanner;
+import java.io.IOException;
 
-@Slf4j
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
-        for (int i = 1; i <= 5; i++) {
-            new Scanner(System.in).nextLine();
+        try {
+            Config config = Config.load("server-config.json");
+            HttpServer server = new HttpServer(config);
+            server.start();
+        } catch (WebServerException | IOException e) {
+            logger.error("Error starting server", e);
+            e.printStackTrace();
         }
     }
 }

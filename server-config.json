@@ -1,0 +1,80 @@
+{
+  "port": 80,
+  "defaultHost": "localhost",
+  "hosts": [
+    {
+      "name": "localhost",
+      "httpRoot": "webapp/www/localhost",
+      "welcomeFile": "index.html",
+      "errorPages": {
+        "notFound": "error/404.html",
+        "forbidden": "error/403.html",
+        "internalError": "error/500.html"
+      }
+    },
+    {
+      "name": "example.com",
+      "httpRoot": "webapp/www/example",
+      "welcomeFile": "index.html",
+      "errorPages": {
+        "notFound": "error/404.html",
+        "forbidden": "error/403.html",
+        "internalError": "error/500.html"
+      }
+    },
+    {
+      "name": "test.com",
+      "httpRoot": "webapp/www/test",
+      "welcomeFile": "index.html",
+      "errorPages": {
+        "notFound": "error/404.html",
+        "forbidden": "error/403.html",
+        "internalError": "error/500.html"
+      }
+    }
+  ],
+  "security": {
+    "forbiddenPatterns": [
+      "\\.\\.",
+      "~"
+    ],
+    "forbiddenExtensions": [
+      ".exe",
+      ".bat",
+      ".sh"
+    ],
+    "forbiddenPaths": [
+      "/WEB-INF",
+      "/META-INF"
+    ]
+  },
+  "errorPages": {
+    "notFound": "error/404.html",
+    "forbidden": "error/403.html",
+    "internalError": "error/500.html"
+  },
+  "servlets": [
+    {
+      "name": "TimeServlet",
+      "className": "com.example.servlet.TimeServlet",
+      "urlPatterns": [
+        "/time",
+        "/service.Time"
+      ]
+    },
+    {
+      "name": "HelloServlet",
+      "className": "com.example.servlet.HelloServlet",
+      "urlPatterns": [
+        "/hello"
+      ]
+    },
+    {
+      "name": "ServiceHelloServlet",
+      "className": "com.example.servlet.service.HelloServlet",
+      "urlPatterns": [
+        "/service.Hello"
+      ]
+    }
+  ]
+} 
