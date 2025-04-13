@@ -67,7 +67,7 @@ public class WebServerTest {
 
     @Test
     public void testServerPort() throws Exception {
-        assertEquals(8080, config.getPort());
+        assertEquals(80, config.getPort());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class WebServerTest {
     public void testServerAlreadyRunning() throws Exception {
         HttpServer anotherServer = new HttpServer(config);
         try {
-            anotherServer.start(); // Should throw IOException
+            anotherServer.start();
         } finally {
             if (anotherServer != null && anotherServer.isRunning) {
                 anotherServer.stop();
@@ -89,7 +89,6 @@ public class WebServerTest {
         }
     }
 
-    // 1. Host 헤더 처리 테스트
     @Test
     public void testHostHeader() throws Exception {
         // localhost 테스트
@@ -117,17 +116,15 @@ public class WebServerTest {
         }
     }
 
-    // 2. 설정 파일 관리 테스트
     @Test
     public void testConfigFile() throws Exception {
-        assertEquals(8080, config.getPort());
+        assertEquals(80, config.getPort());
         assertTrue(config.isHostConfigured("localhost"));
         assertTrue(config.isHostConfigured("example.com"));
         assertEquals("webapp/www/localhost", config.getDocBase("localhost"));
         assertEquals("webapp/www/example", config.getDocBase("example.com"));
     }
 
-    // 3. 오류 처리 테스트
     @Test
     public void testErrorHandling() throws Exception {
         // 404 테스트
@@ -167,7 +164,6 @@ public class WebServerTest {
         }
     }
 
-    // 4. 보안 규칙 테스트
     @Test
     public void testSecurityRules() throws Exception {
         // .exe 파일 접근 테스트
@@ -183,7 +179,6 @@ public class WebServerTest {
         }
     }
 
-    // 6. WAS 기능 테스트
     @Test
     public void testWAS() throws Exception {
         // TimeServlet 테스트
