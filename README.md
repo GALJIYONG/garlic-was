@@ -14,8 +14,8 @@ Java로 구현된 경량 웹 애플리케이션 서버입니다.
 
 ## 요구사항
 
-- Java 11 이상
-- Maven 3.6 이상
+- Java 17 이상
+- Maven 3.9 이상
 
 ## 빌드 방법
 
@@ -34,38 +34,42 @@ java -jar was.jar
 서버 설정은 `server-config.json` 파일을 통해 관리됩니다:
 
 ```json
-"hosts": [
 {
-"name": "localhost",
-"httpRoot": "webapp/www/localhost",
-"welcomeFile": "index.html",
-"errorPages": {
-"notFound": "error/404.html",
-"forbidden": "error/403.html",
-"internalError": "error/500.html"
+    "port": 80,
+    "defaultHost": "localhost",
+    "hosts": [
+        {
+            "name": "localhost",
+            "httpRoot": "webapp/www/localhost",
+            "welcomeFile": "index.html",
+            "errorPages": {
+                "notFound": "error/404.html",
+                "forbidden": "error/403.html",
+                "internalError": "error/500.html"
+            }
+        },
+        {
+            "name": "example.com",
+            "httpRoot": "webapp/www/example",
+            "welcomeFile": "index.html",
+            "errorPages": {
+                "notFound": "error/404.html",
+                "forbidden": "error/403.html",
+                "internalError": "error/500.html"
+            }
+        },
+        {
+            "name": "test.com",
+            "httpRoot": "webapp/www/test",
+            "welcomeFile": "index.html",
+            "errorPages": {
+                "notFound": "error/404.html",
+                "forbidden": "error/403.html",
+                "internalError": "error/500.html"
+            }
+        }
+    ]
 }
-},
-{
-"name": "example.com",
-"httpRoot": "webapp/www/example",
-"welcomeFile": "index.html",
-"errorPages": {
-"notFound": "error/404.html",
-"forbidden": "error/403.html",
-"internalError": "error/500.html"
-}
-},
-{
-"name": "test.com",
-"httpRoot": "webapp/www/test",
-"welcomeFile": "index.html",
-"errorPages": {
-"notFound": "error/404.html",
-"forbidden": "error/403.html",
-"internalError": "error/500.html"
-}
-}
-]
 ```
 
 ## 디렉토리 구조
